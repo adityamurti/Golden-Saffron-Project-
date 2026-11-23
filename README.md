@@ -1,6 +1,8 @@
 # Golden Saffron
 
-Marketing site for Golden Saffron — Indian cuisine in Bali. Static, no backend.
+Official website repository for Golden Saffron — an Indian cuisine restaurant
+offering *a taste of comfort and creativity*. Features a digital menu, the
+restaurant story, location and maps, and WhatsApp-based reservations.
 
 ## Stack
 
