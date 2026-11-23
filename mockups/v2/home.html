@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Saffron — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<!-- Tema dibaca dari hash: home.html#k1 / #k2 / #k3 -->
+<script>
+  var t = (location.hash || "#k1").replace("#", "");
+  if (["k1","k2","k3"].indexOf(t) === -1) t = "k1";
+  document.body.setAttribute("data-theme", t);
+</script>
+
+<header class="hdr">
+  <a class="brand" href="#"><span class="mark">GS</span>Golden Saffron</a>
+  <nav class="nav">
+    <a href="#" aria-current="page">Home</a>
+    <a href="menu.html#m1">Menu</a>
+    <a href="#">About</a>
+    <a href="#">Location</a>
+  </nav>
+  <a class="btn" href="#">Reserve</a>
+</header>
+
+<main>
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="wrap"><div class="spine">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Indian Cuisine &middot; Bali</p>
+          <h1>Authentic Indian flavours, served <em>with warmth</em></h1>
+          <p class="lede">A taste of comfort and creativity &mdash; slow-cooked curries,
+            tandoor breads, and spice blends layered by hand, served in the heart of Bali.</p>
+          <div class="actions">
+            <a class="btn" href="#">Reserve via WhatsApp</a>
+            <a class="btn btn-ghost" href="#">Get Directions</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="slot" data-ratio="4:5"></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 2. SIGNATURE -->
+  <section class="sec">
+    <div class="wrap"><div class="spine">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <p class="eyebrow">Signature Dishes</p>
+        <h2>Three dishes worth the trip</h2>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="slot" data-ratio="3:2"></div>
+          <div class="card-body">
+            <h3>Butter Chicken</h3>
+            <p>Tandoori chicken simmered in tomato, cream, and fenugreek.</p>
+            <span class="price">105K</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="slot" data-ratio="3:2"></div>
+          <div class="card-body">
+            <h3>Chicken Manchurian</h3>
+            <p>Crisp chicken balls, onion, capsicum, in a tangy Chinese sauce.</p>
+            <span class="price">89K</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="slot" data-ratio="3:2"></div>
+          <div class="card-body">
+            <h3>Paneer Tikka Masala</h3>
+            <p>Charred cottage cheese, cashew-tomato gravy, dried fenugreek.</p>
+            <span class="price">95K</span>
+          </div>
+        </article>
+
+      </div>
+    </div></div>
+  </section>
+
+  <div class="ornament" aria-hidden="true"><i></i></div>
+
+  <!-- 3. STORY -->
+  <section class="sec">
+    <div class="wrap"><div class="spine">
+      <div class="story">
+        <div class="story-copy">
+          <span class="sec-num">02</span>
+          <p class="eyebrow">Our Kitchen</p>
+          <h2>Spices ground fresh, every morning</h2>
+          <p>Our kitchen begins before the sun does. Whole spices are toasted and ground
+            in small batches daily, because a blend that sits loses the brightness that
+            makes a curry worth remembering.</p>
+          <p>Tandoor breads are stretched and baked to order. Nothing waits under a lamp.</p>
+          <a class="link-arrow" href="#">Read our story</a>
+        </div>
+        <div class="story-media">
+          <div class="slot" data-ratio="3:2"></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 4. VISIT -->
+  <section class="sec">
+    <div class="wrap"><div class="spine">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <p class="eyebrow">Find Us</p>
+        <h2>Open daily, from late morning</h2>
+      </div>
+      <div class="visit">
+        <div class="visit-col">
+          <p class="eyebrow">Opening Hours</p>
+          <ul class="hours">
+            <li><span>Monday &ndash; Thursday</span><span>11:00 &ndash; 23:00</span></li>
+            <li><span>Friday &ndash; Saturday</span><span>11:00 &ndash; 23:00</span></li>
+            <li><span>Sunday</span><span>11:00 &ndash; 23:00</span></li>
+          </ul>
+        </div>
+        <div class="visit-col">
+          <p class="eyebrow">Address</p>
+          <address class="addr">
+            Jl. Contoh No. 1<br>
+            Kuta, Bali 80361<br>
+            Indonesia
+          </address>
+          <a class="link-arrow" href="#">Get directions</a>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 5. CTA BAND -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Reservations</p>
+      <h2>Save your table</h2>
+      <p>Send us your date, time, and party size on WhatsApp. We reply during opening hours.</p>
+      <a class="btn" href="#">Reserve via WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- 6. FOOTER -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <p class="ftr-brand">Golden Saffron</p>
+        <p>Indian cuisine in the heart of Bali. Slow-cooked curries, tandoor breads,
+          spice blends layered by hand.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><span>Jl. Contoh No. 1</span></li>
+          <li><span>Kuta, Bali 80361</span></li>
+          <li><span>11:00 &ndash; 23:00 daily</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">+62 812 0000 0000</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>&copy; 2026 Golden Saffron</span>
+      <span>Menu &middot; About &middot; Location &middot; FAQ</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

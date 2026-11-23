@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Saffron — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<!-- menu.html?layout=m1|m2|m3&theme=k1|k2|k3 -->
+<script>
+  (function () {
+    var p = new URLSearchParams(location.search);
+    var th = p.get("theme") || "k1";
+    var ly = p.get("layout") || "m1";
+    if (["k1", "k2", "k3"].indexOf(th) === -1) th = "k1";
+    if (["m1", "m2", "m3"].indexOf(ly) === -1) ly = "m1";
+    document.body.setAttribute("data-theme", th);
+    window.__layout = ly;
+  })();
+</script>
+
+<header class="hdr">
+  <a class="brand" href="home.html"><span class="mark">GS</span>Golden Saffron</a>
+  <nav class="nav">
+    <a href="home.html">Home</a>
+    <a href="#" aria-current="page">Menu</a>
+    <a href="#">About</a>
+    <a href="#">Location</a>
+  </nav>
+  <a class="btn" href="#">Reserve</a>
+</header>
+
+<main>
+  <!-- PAGE HEAD -->
+  <section class="page-head">
+    <div class="wrap"><div class="spine">
+      <div class="page-head-grid">
+        <div>
+          <p class="eyebrow">Bali &middot; Since 2019</p>
+          <h1>The Menu</h1>
+          <p class="lede">Slow-cooked, layered by hand. Prices in thousands of Indonesian
+            rupiah, tax and service included.</p>
+        </div>
+        <div class="page-head-media">
+          <div class="slot" data-ratio="3:2"></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <div class="strip">
+    <div class="strip-inner">
+      <div class="strip-row">
+        <div class="strip-item"><span class="k">Kitchen Hours</span><span class="v">11:00 &ndash; 23:00</span></div>
+        <div class="strip-item"><span class="k">Reservations</span><span class="v">WhatsApp only</span></div>
+        <div class="strip-item"><span class="k">Last Order</span><span class="v">22:30</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec" id="menu-root"></section>
+
+  <div class="wrap">
+    <div class="menu-note">
+      <p>Serving sizes are generous, and most main courses are designed to share.
+        Please tell us about any allergies when you reserve &mdash; our kitchen handles
+        nuts, dairy, and gluten daily.</p>
+      <p>All prices are in Indonesian rupiah, inclusive of tax and service charge.
+        Menu changes with the season and what the market has.</p>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Reservations</p>
+      <h2>Save your table</h2>
+      <p>Send us your date, time, and party size on WhatsApp. We reply during opening hours.</p>
+      <a class="btn" href="#">Reserve via WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <p class="ftr-brand">Golden Saffron</p>
+        <p>Indian cuisine in the heart of Bali. Slow-cooked curries, tandoor breads,
+          spice blends layered by hand.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><span>Jl. Contoh No. 1</span></li>
+          <li><span>Kuta, Bali 80361</span></li>
+          <li><span>11:00 &ndash; 23:00 daily</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">+62 812 0000 0000</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>&copy; 2026 Golden Saffron</span>
+      <span>Menu &middot; About &middot; Location &middot; FAQ</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Konten IDENTIK di ketiga layout — supaya perbandingan adil.
+  var MENU = [
+    { cat: "Mains", items: [
+      { n: "Butter Chicken",      d: "Tandoori chicken simmered in tomato, cream, and fenugreek", p: "105K", sig: true },
+      { n: "Chicken Manchurian",  d: "Crisp chicken balls, onion, capsicum, in a tangy Chinese sauce", p: "89K", sig: true },
+      { n: "Paneer Tikka Masala", d: "Charred cottage cheese, cashew-tomato gravy, dried fenugreek", p: "95K", sig: true },
+      { n: "Lamb Rogan Josh",     d: "Slow-braised lamb, Kashmiri chilli, yoghurt, whole spice", p: "125K" },
+      { n: "Chicken Biryani",     d: "Basmati layered with marinated chicken, saffron, fried onion", p: "98K" },
+      { n: "Dal Makhani",         d: "Black lentils, slow-cooked overnight, finished with cream", p: "75K" }
+    ]},
+    { cat: "Breads", items: [
+      { n: "Garlic Naan",         d: "Hand-stretched dough, tandoor-baked, garlic butter", p: "35K" }
+    ]},
+    { cat: "Desserts", items: [
+      { n: "Gulab Jamun",         d: "Warm milk dumplings in cardamom-rose syrup", p: "45K" }
+    ]}
+  ];
+
+  var layout = window.__layout || "m1";
+  var root = document.getElementById("menu-root");
+  var pad = function (i) { return String(i + 1).padStart(2, "0"); };
+
+  function dishM1(it) {
+    return '<div class="dish">' +
+      '<div class="dish-head">' +
+        '<span class="dish-name">' + it.n + '</span>' +
+        '<span class="dish-dots"></span>' +
+        (it.sig ? '<span class="badge">Signature</span>' : '') +
+      '</div>' +
+      '<span class="dish-price">' + it.p + '</span>' +
+      '<p class="dish-desc">' + it.d + '</p>' +
+    '</div>';
+  }
+
+  function dishM2(it) {
+    return '<div class="dish">' +
+      '<div class="dish-head"><span class="dish-name">' + it.n + '</span>' +
+        '<span class="dish-dots"></span></div>' +
+      '<span class="dish-price">' + it.p + '</span>' +
+    '</div>';
+  }
+
+  function dishM3(it) {
+    return '<div class="plate">' +
+      '<div class="slot" data-ratio="1:1"></div>' +
+      '<div class="dish-head">' +
+        '<span class="dish-name">' + it.n + '</span>' +
+        '<span class="dish-dots"></span>' +
+        (it.sig ? '<span class="badge">Signature</span>' : '') +
+        '<span class="dish-price">' + it.p + '</span>' +
+      '</div>' +
+      '<p class="dish-desc">' + it.d + '</p>' +
+    '</div>';
+  }
+
+  function catHead(c, i) {
+    return '<div class="cat-head">' +
+      '<span class="cat-num">' + pad(i) + '</span>' +
+      '<h2>' + c.cat + '</h2>' +
+      '<span class="cat-meta">' + c.items.length + ' dishes</span>' +
+    '</div>';
+  }
+
+  var html = '';
+
+  if (layout === "m1") {
+    html += '<div class="wrap"><div class="spine">';
+    MENU.forEach(function (c, i) {
+      html += '<div class="cat">' + catHead(c, i) + c.items.map(dishM1).join('') + '</div>';
+    });
+    html += '</div></div>';
+
+  } else if (layout === "m2") {
+    // Dua kolom mengalir per kategori — kategori tetap utuh, hidangan mengalir.
+    // Versi sebelumnya membagi kolom per kategori sehingga kolom kanan kosong.
+    html += '<div class="wrap"><div class="spine">';
+    MENU.forEach(function (c, i) {
+      html += '<div class="spread-cat">' + catHead(c, i) +
+              '<div class="spread-grid">' + c.items.map(dishM2).join('') + '</div>' +
+              '</div>';
+    });
+    html += '<p class="spread-note">Breads are baked to order. Please tell us about allergies.</p>';
+    html += '</div></div>';
+
+  } else {
+    // m3: thumbnail 1:1, signature dapat slot besar
+    html += '<div class="wrap"><div class="spine">';
+    html += '<div class="plate-hero">' +
+      '<div class="slot" data-ratio="3:2"></div>' +
+      '<div class="plate-caption"><span>Butter Chicken</span><span>105K</span></div>' +
+    '</div>';
+    MENU.forEach(function (c, i) {
+      html += '<div class="cat">' + catHead(c, i) + c.items.map(dishM3).join('') + '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  root.innerHTML = html;
+})();
+</script>
+</body>
+</html>

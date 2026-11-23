@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Saffron — About (replika Ricey Silo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* ====================================================================
+     REPLIKA RICEY SILO /about
+     Ciri: header terpusat kecil, hero full-viewport, semua section
+     terpusat, whitespace ekstrem, satu kolom sempit.
+     ==================================================================== */
+
+  body { background: var(--cream); }
+
+  /* ---------- header terpusat ---------- */
+  .r-hdr {
+    position: fixed; inset: 0 0 auto 0; z-index: 60;
+    transition: background-color .4s ease, box-shadow .4s ease;
+    text-align: center;
+    padding: 26px 0 18px;
+  }
+  .r-hdr.scrolled { background: rgba(248,244,236,.94); backdrop-filter: blur(10px); }
+  .r-brand {
+    display: inline-flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--ink);
+  }
+  .r-mark {
+    width: 34px; height: 34px; flex: none;
+    border: 1px solid var(--terracotta); border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--serif); font-size: 13px; letter-spacing: .04em;
+    color: var(--terracotta); font-weight: 500;
+  }
+  .r-brand-txt { text-align: left; }
+  .r-brand-name {
+    font-family: var(--serif); font-size: 17px; letter-spacing: .28em;
+    text-transform: uppercase; line-height: 1.1; display: block;
+  }
+  .r-brand-tag {
+    font-size: 8.5px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--muted); display: block; margin-top: 5px; font-weight: 500;
+  }
+  .r-nav {
+    display: flex; justify-content: center; gap: 34px; margin-top: 16px;
+  }
+  .r-nav a {
+    font-size: 13px; letter-spacing: .04em; text-decoration: none;
+    color: var(--ink); opacity: .78; transition: opacity .25s ease;
+  }
+  .r-nav a:hover, .r-nav a[aria-current] { opacity: 1; }
+  .r-lang {
+    position: absolute; right: 34px; top: 30px;
+    font-size: 11px; letter-spacing: .1em; color: var(--muted);
+    text-decoration: none;
+  }
+
+  /* ---------- hero full viewport ---------- */
+  .r-hero {
+    position: relative;
+    /* Tinggi tetap, bukan 100svh: nilai svh bergantung tinggi jendela render,
+       sehingga hero bisa ikut membengkak dan menelan seluruh halaman.
+       Di browser asli nilainya sama dengan satu layar penuh. */
+    height: 860px;
+    overflow: hidden;
+    background: var(--beige);
+  }
+  @media (max-width: 900px) { .r-hero { height: 620px; } }
+  .r-hero .slot { position: absolute; inset: 0; height: 100%; }
+  .r-hero .slot::after {
+    font-size: 12px; letter-spacing: .3em;
+  }
+  /* Catatan: tidak ada overlay gradient gelap di sini. Overlay itu hanya
+     masuk akal kalau slot berisi foto; di atas slot kosong ia jadi pita abu
+     yang terlihat seperti kesalahan render. */
+  .r-scroll {
+    position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px;
+    /* slot kosong = latar beige terang, jadi tinta gelap yang benar */
+    color: var(--ink); font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
+    text-decoration: none; font-weight: 700;
+    animation: bob 2.6s ease-in-out infinite;
+  }
+  .r-scroll i {
+    display: block; width: 1px; height: 44px;
+    background: currentColor; opacity: .4;
+  }
+  @keyframes bob {
+    0%,100% { transform: translate(-50%,0); }
+    50% { transform: translate(-50%,9px); }
+  }
+
+  /* ---------- section umum: satu kolom sempit, terpusat ---------- */
+  .r-sec { padding: clamp(88px, 12vw, 168px) 0; }
+  .r-narrow { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+  .r-flower {
+    width: 32px; height: 32px; margin: 0 auto 34px;
+    color: var(--terracotta); opacity: .85;
+  }
+  .r-eyebrow {
+    text-align: center; font-size: 10px; letter-spacing: .32em;
+    text-transform: uppercase; color: var(--terracotta);
+    font-weight: 600; margin-bottom: 22px;
+  }
+  .r-h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(30px, 3.4vw, 46px); line-height: 1.28;
+    text-align: center; letter-spacing: -.005em;
+    margin-bottom: 34px;
+  }
+  .r-h2 em { font-style: italic; color: var(--terracotta); }
+  .r-p {
+    font-size: 15.5px; line-height: 2; color: var(--muted);
+    margin-bottom: 22px; text-align: center;
+    max-width: 64ch; margin-left: auto; margin-right: auto;
+  }
+  .r-p:last-child { margin-bottom: 0; }
+
+  .r-divider {
+    width: 1px; height: 64px; background: var(--border-deco);
+    margin: 0 auto;
+  }
+
+  /* ---------- intro: latar beige ---------- */
+  .r-intro { background: var(--beige); }
+  .r-intro .r-p { color: #5C5147; }
+
+  /* ---------- rating ---------- */
+  .r-stars {
+    display: flex; justify-content: center; gap: 6px; margin: 38px 0 0;
+    color: var(--terracotta);
+  }
+  .r-stars i { display: block; width: 13px; height: 13px; background: currentColor;
+    clip-path: polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+
+  /* ---------- the process: interaktif ---------- */
+  .r-process { background: var(--cream); }
+  .r-proc-grid {
+    display: grid; grid-template-columns: 300px 1fr;
+    gap: clamp(32px, 5vw, 76px);
+    align-items: stretch;
+    margin-top: 52px;
+    text-align: left;
+  }
+  .r-proc-list { display: flex; flex-direction: column; justify-content: center; }
+  .r-step {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 16px 0; width: 100%; text-align: left;
+    border-bottom: 1px solid var(--border-deco);
+    color: var(--muted); transition: color .3s ease, padding-left .3s ease;
+    opacity: .58;
+  }
+  .r-step:last-child { border-bottom: 0; }
+  .r-step:hover { opacity: .85; }
+  .r-step.on { opacity: 1; color: var(--ink); padding-left: 8px; }
+  .r-step-n {
+    font-family: var(--serif); font-size: 13px; letter-spacing: .14em;
+    color: var(--dim); font-variant-numeric: tabular-nums; flex: none;
+    transition: color .3s ease;
+  }
+  .r-step.on .r-step-n { color: var(--terracotta); }
+  .r-step-t { font-size: 13.5px; letter-spacing: .05em; font-weight: 500; }
+
+  .r-proc-panel {
+    background: var(--card);
+    border: 1px solid var(--border-deco);
+    box-shadow: 0 2px 22px rgba(41,35,31,.055);
+    padding: clamp(30px, 4vw, 54px);
+    min-height: 300px;
+    display: flex; flex-direction: column;
+  }
+  .r-proc-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
+  .r-proc-num {
+    font-family: var(--serif); font-size: 54px; line-height: 1;
+    color: var(--terracotta); font-weight: 300; font-variant-numeric: tabular-nums;
+  }
+  .r-proc-tag { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+  .r-proc-title {
+    font-family: var(--serif); font-size: 27px; font-weight: 400;
+    margin-bottom: 16px; line-height: 1.3;
+  }
+  .r-proc-text { font-size: 15px; line-height: 1.95; color: var(--muted); flex: 1; }
+  .r-proc-bar-wrap { height: 2px; background: var(--border-deco); margin-top: 32px; overflow: hidden; }
+  .r-proc-bar { height: 100%; width: 20%; background: var(--terracotta); transition: width .5s cubic-bezier(.4,0,.2,1); }
+  .r-proc-ctrl { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+  .r-arrow {
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--border-form);
+    display: grid; place-items: center; color: var(--ink);
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .r-arrow:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .r-arrow svg { width: 15px; height: 15px; }
+  .r-proc-hint { margin-left: auto; font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .r-proc-grid { grid-template-columns: 1fr; gap: 26px; }
+    .r-proc-panel { min-height: 0; }
+    .r-proc-num { font-size: 42px; }
+    .r-proc-hint { display: none; }
+  }
+
+  /* ---------- counter ---------- */
+  .r-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 30px; margin-top: 56px; text-align: center;
+  }
+  .r-stat-n {
+    font-family: var(--serif); font-size: clamp(38px, 4.4vw, 56px);
+    font-weight: 300; color: var(--terracotta); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .r-stat-l {
+    font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--dim); margin-top: 12px; font-weight: 600;
+  }
+  @media (max-width: 620px) {
+    .r-stats { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  /* ---------- footer ---------- */
+  .r-ftr {
+    background: var(--beige); padding: 66px 0 40px; text-align: center;
+  }
+  .r-ftr .r-brand { margin-bottom: 26px; }
+  .r-ftr-nav { display: flex; justify-content: center; gap: 28px; margin-bottom: 34px; flex-wrap: wrap; }
+  .r-ftr-nav a {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    text-decoration: none; color: var(--muted); font-weight: 600;
+  }
+  .r-ftr-nav a:hover { color: var(--ink); }
+  .r-ftr-small { font-size: 11px; color: var(--dim); letter-spacing: .06em; }
+
+  /* ---------- overlay menu (mobile) ---------- */
+  .r-overlay {
+    position: fixed; inset: 0; z-index: 80;
+    background: var(--cream);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 8px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .4s ease;
+  }
+  .r-overlay.is-open { opacity: 1; pointer-events: auto; }
+  .r-overlay a {
+    font-family: var(--serif); font-size: 30px; text-decoration: none;
+    color: var(--ink); padding: 10px 0;
+  }
+  .r-overlay a[aria-current] { color: var(--terracotta); font-style: italic; }
+  .r-overlay-close {
+    position: absolute; top: 24px; right: 24px;
+    width: 44px; height: 44px; display: grid; place-items: center;
+    font-size: 22px; color: var(--ink);
+  }
+  .r-burger {
+    position: absolute; right: 22px; top: 26px;
+    width: 42px; height: 42px; display: none;
+    place-items: center; color: var(--ink);
+  }
+  @media (max-width: 900px) {
+    .r-nav { display: none; }
+    .r-burger { display: grid; }
+    .r-lang { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- header -->
+<header class="r-hdr" id="hdr">
+  <a class="r-brand" href="#">
+    <span class="r-mark">GS</span>
+    <span class="r-brand-txt">
+      <span class="r-brand-name">Golden Saffron</span>
+      <span class="r-brand-tag">Indian Cuisine &middot; Bali</span>
+    </span>
+  </a>
+  <nav class="r-nav">
+    <a href="#">Home</a>
+    <a href="#" aria-current="page">About</a>
+    <a href="#">Menu</a>
+    <a href="#">Contact</a>
+  </nav>
+  <a class="r-lang" href="#">EN</a>
+  <button class="r-burger" data-menu-open aria-expanded="false" aria-label="Open menu">
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M0 1h18M0 6h18M0 11h18"/>
+    </svg>
+  </button>
+</header>
+
+<!-- overlay menu -->
+<div class="r-overlay" data-menu-overlay aria-hidden="true" role="dialog" aria-label="Menu">
+  <button class="r-overlay-close" data-menu-close aria-label="Close menu">&times;</button>
+  <a href="#">Home</a>
+  <a href="#" aria-current="page">About</a>
+  <a href="#">Menu</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- hero -->
+<section class="r-hero">
+  <div class="slot" data-label="Hero image &middot; 16:9 &middot; interior or signature dish"></div>
+  <a class="r-scroll" href="#about-intro">Scroll<i></i></a>
+</section>
+
+<main>
+
+  <!-- intro -->
+  <section class="r-sec r-intro" id="about-intro">
+    <div class="r-narrow">
+      <svg class="r-flower reveal" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+        <circle cx="16" cy="16" r="3.4"/>
+        <path d="M16 1.6c3.6 3.6 3.6 7.2 0 10.8M16 30.4c-3.6-3.6-3.6-7.2 0-10.8M1.6 16c3.6-3.6 7.2-3.6 10.8 0M30.4 16c-3.6 3.6-7.2 3.6-10.8 0"/>
+        <path d="M6 6c4.8 1 7.2 3.4 8.2 8.2M26 26c-4.8-1-7.2-3.4-8.2-8.2M26 6c-1 4.8-3.4 7.2-8.2 8.2M6 26c1-4.8 3.4-7.2 8.2-8.2"/>
+      </svg>
+      <p class="r-eyebrow reveal">Our Story</p>
+      <h2 class="r-h2 reveal" data-d="1">The idea behind Golden Saffron was born out of an <em>enthusiasm for great food</em> and culture.</h2>
+      <p class="r-p reveal" data-d="2">In the Indian subcontinent, we appreciate the fruits of our nature &mdash; the patience of slow cooking, the discipline of a tandoor, the generosity of a shared table.</p>
+      <p class="r-p reveal" data-d="3">This is our attitude while preparing and serving our food. After years of continuous preparation and improvements, we are excited to serve you a bowl of layered, hand-ground Indian cooking in the heart of Bali.</p>
+      <div class="r-stars reveal" data-d="4" aria-label="Rated 5 out of 5">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- description -->
+  <section class="r-sec">
+    <div class="r-narrow">
+      <p class="r-eyebrow reveal">What We Do</p>
+      <h2 class="r-h2 reveal" data-d="1">We invite you to join us on a <em>culinary expedition</em></h2>
+      <p class="r-p reveal" data-d="2">To taste our fresh and timely prepared ingredients, served with curries built on a base of onions, ginger, and garlic cooked down slowly &mdash; never rushed, never thickened with shortcuts.</p>
+      <p class="r-p reveal" data-d="3">We cook using whole spices toasted and ground in small batches each morning, leading to a result that requires little seasoning but is extraordinarily fragrant.</p>
+      <div class="r-stats">
+        <div class="reveal">
+          <div class="r-stat-n" data-count="8" data-suffix="h">0</div>
+          <div class="r-stat-l">Slowest braise</div>
+        </div>
+        <div class="reveal" data-d="1">
+          <div class="r-stat-n" data-count="24" data-suffix="">0</div>
+          <div class="r-stat-l">Spices ground daily</div>
+        </div>
+        <div class="reveal" data-d="2">
+          <div class="r-stat-n" data-count="2019" data-suffix="">0</div>
+          <div class="r-stat-l">Cooking since</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="r-divider"></div>
+
+  <!-- the process -->
+  <section class="r-sec r-process">
+    <div class="r-narrow">
+      <p class="r-eyebrow reveal">How We Cook</p>
+      <h2 class="r-h2 reveal" data-d="1">The Process</h2>
+      <p class="r-p reveal" data-d="2">Five stages, in order. Nothing is skipped, and nothing waits under a lamp.</p>
+    </div>
+
+    <div class="container" data-steps>
+      <div class="r-proc-grid">
+        <div class="r-proc-list reveal">
+          <button class="r-step on" data-step data-title="Toast the whole spices"
+                  data-text="Cumin, coriander, cardamom, and clove are toasted dry in a heavy pan until they smell nutty and turn a shade darker. Toasting wakes the oils; grinding cold spices gives you dust with no perfume.">
+            <span class="r-step-n">01</span><span class="r-step-t">Toast the whole spices</span>
+          </button>
+          <button class="r-step" data-step data-title="Build the base"
+                  data-text="Onion, ginger, and garlic cook down for the better part of an hour until the onion collapses and sweetens. This is the step nobody photographs and every good curry depends on.">
+            <span class="r-step-n">02</span><span class="r-step-t">Build the base</span>
+          </button>
+          <button class="r-step" data-step data-title="Bloom the ground spice"
+                  data-text="Ground spice goes in at the end of the base, into hot fat, for less than a minute. Any longer and it scorches &mdash; bitter, and unrecoverable.">
+            <span class="r-step-n">03</span><span class="r-step-t">Bloom the ground spice</span>
+          </button>
+          <button class="r-step" data-step data-title="Slow braise"
+                  data-text="Lamb and lentils braise for hours at a bare simmer, lid ajar. Cream or yoghurt goes in only at the end, off the heat, so it does not split.">
+            <span class="r-step-n">04</span><span class="r-step-t">Slow braise</span>
+          </button>
+          <button class="r-step" data-step data-title="Tandoor and finish"
+                  data-text="Naan is stretched and slapped onto the tandoor wall to order. The dish is finished with butter, cream, or a squeeze of lime, and it leaves the pass immediately.">
+            <span class="r-step-n">05</span><span class="r-step-t">Tandoor and finish</span>
+          </button>
+        </div>
+
+        <div class="r-proc-panel reveal" data-d="1">
+          <div class="r-proc-top">
+            <span class="r-proc-num" data-step-num>01</span>
+            <span class="r-proc-tag">Stage</span>
+          </div>
+          <h3 class="r-proc-title" data-step-title>Toast the whole spices</h3>
+          <p class="r-proc-text" data-step-text>Loading&hellip;</p>
+          <div class="r-proc-bar-wrap"><div class="r-proc-bar" data-step-bar></div></div>
+          <div class="r-proc-ctrl">
+            <button class="r-arrow" data-step-prev aria-label="Previous stage">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 2L4 8l6 6"/></svg>
+            </button>
+            <button class="r-arrow" data-step-next aria-label="Next stage">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 2l6 6-6 6"/></svg>
+            </button>
+            <span class="r-proc-hint">Hover a stage &middot; or use arrows</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- closing -->
+  <section class="r-sec r-intro">
+    <div class="r-narrow">
+      <h2 class="r-h2 reveal">A table is set for you</h2>
+      <p class="r-p reveal" data-d="1">Book ahead for dinner, or walk in for lunch. We keep a few tables free every evening for people who decide late.</p>
+      <p class="reveal" data-d="2" style="text-align:center;margin-top:34px">
+        <a class="btn btn-fill" href="#">Reserve via WhatsApp</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="r-ftr">
+  <div class="r-narrow">
+    <a class="r-brand" href="#">
+      <span class="r-mark">GS</span>
+      <span class="r-brand-txt">
+        <span class="r-brand-name">Golden Saffron</span>
+        <span class="r-brand-tag">Indian Cuisine &middot; Bali</span>
+      </span>
+    </a>
+    <nav class="r-ftr-nav">
+      <a href="#">Home</a><a href="#">About</a><a href="#">Menu</a>
+      <a href="#">Location</a><a href="#">Contact</a>
+    </nav>
+    <p class="r-ftr-small">&copy; <span data-year></span> Golden Saffron &middot; Jl. Contoh No. 1, Kuta, Bali</p>
+  </div>
+</footer>
+
+<script src="common.js"></script>
+</body>
+</html>

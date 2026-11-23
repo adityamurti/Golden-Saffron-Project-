@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Saffron — Perbandingan 3 Replika</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#F8F4EC; --beige:#E8DCCB; --ink:#29231F;
+    --terra:#A64B2A; --terra-hover:#8A3D22;
+    --muted:#6B5F55; --dim:#9A8B7D; --line:#E8DCCB;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Inter",system-ui,sans-serif;background:var(--cream);color:var(--ink);
+    font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+
+  /* ---- header ---- */
+  .hd{padding:52px 0 34px;border-bottom:1px solid var(--line)}
+  .hd-tag{
+    font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.24em;
+    text-transform:uppercase;font-weight:700;color:var(--terra);margin-bottom:14px;
+  }
+  .hd h1{
+    font-family:"Archivo",sans-serif;font-size:clamp(26px,3.4vw,40px);font-weight:700;
+    letter-spacing:-.02em;line-height:1.15;margin-bottom:16px;
+  }
+  .hd p{color:var(--muted);max-width:76ch;font-size:15px}
+  .hd-note{
+    margin-top:22px;background:var(--beige);padding:18px 22px;
+    font-size:13.5px;color:#5C5147;line-height:1.8;
+    border-left:3px solid var(--terra);
+  }
+  .hd-note b{color:var(--ink)}
+
+  /* ---- tab ---- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:26px 0 0;position:sticky;top:0;
+    background:var(--cream);z-index:20;border-bottom:1px solid var(--line)}
+  .tab{
+    font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:600;padding:13px 22px;
+    border:1px solid var(--line);border-bottom:0;background:transparent;
+    color:var(--muted);cursor:pointer;transition:background-color .2s,color .2s;
+    border-radius:8px 8px 0 0;margin-bottom:-1px;
+  }
+  .tab:hover{color:var(--ink);background:rgba(232,220,203,.5)}
+  .tab[aria-selected="true"]{
+    background:#fff;color:var(--ink);border-color:var(--line);
+    border-bottom:1px solid #fff;box-shadow:0 -2px 0 var(--terra) inset;
+  }
+
+  /* ---- panel ---- */
+  .panel{padding:40px 0 90px}
+  .panel[hidden]{display:none}
+  .panel-hd{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:30px}
+  .panel-hd h2{
+    font-family:"Archivo",sans-serif;font-size:22px;font-weight:700;
+    letter-spacing:-.01em;margin-bottom:6px;
+  }
+  .panel-hd .src{font-size:13px;color:var(--dim);word-break:break-all}
+  .panel-hd .open{
+    margin-left:auto;display:inline-flex;align-items:center;gap:9px;
+    background:var(--terra);color:#fff;text-decoration:none;
+    font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:600;padding:14px 26px;border-radius:999px;
+    transition:background-color .25s;
+  }
+  .panel-hd .open:hover{background:var(--terra-hover)}
+
+  /* ---- spec grid ---- */
+  .specs{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+    margin-bottom:34px;
+  }
+  .spec{background:#fff;padding:20px 22px}
+  .spec dt{
+    font-family:"Archivo",sans-serif;font-size:9.5px;letter-spacing:.2em;
+    text-transform:uppercase;font-weight:600;color:var(--terra);margin-bottom:8px;
+  }
+  .spec dd{font-size:13.5px;color:var(--muted);line-height:1.75}
+  .spec dd b{color:var(--ink);font-weight:600}
+
+  /* ---- shot ---- */
+  .shots{display:grid;grid-template-columns:1fr;gap:30px}
+  @media(min-width:1080px){.shots{grid-template-columns:1fr 340px;align-items:start}}
+  .shot{border:1px solid var(--line);background:#fff;overflow:hidden}
+  .shot-label{
+    font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;font-weight:600;color:var(--muted);
+    padding:12px 16px;border-bottom:1px solid var(--line);background:var(--beige);
+    display:flex;justify-content:space-between;gap:12px;
+  }
+  .shot-label span{color:var(--dim);font-weight:500;letter-spacing:.1em}
+  .shot-scroll{
+    max-height:min(76vh,860px);overflow-y:auto;overflow-x:hidden;
+    scrollbar-width:thin;
+  }
+  .shot-scroll img{width:100%;height:auto}
+  .shot-mobile{}
+  .shot-mobile .shot-scroll{max-height:min(76vh,860px)}
+
+  /* ---- notes ---- */
+  .verdict{
+    background:#fff;border:1px solid var(--line);padding:26px 28px;margin-top:34px;
+  }
+  .verdict h3{
+    font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;font-weight:700;color:var(--terra);margin-bottom:18px;
+  }
+  .verdict-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
+  .verdict-col h4{
+    font-size:13px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .dot-good{background:#3F7A4F}
+  .dot-bad{background:#A64B2A}
+  .verdict-col ul{list-style:none;font-size:13.5px;color:var(--muted);line-height:1.8}
+  .verdict-col li{padding-left:16px;position:relative;margin-bottom:7px}
+  .verdict-col li::before{content:"";position:absolute;left:0;top:.68em;width:5px;height:1px;background:var(--dim)}
+
+  .foot{padding:36px 0 60px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim)}
+  .foot p+p{margin-top:8px}
+
+  @media(max-width:640px){
+    .wrap{padding:0 20px}
+    .hd{padding:36px 0 26px}
+    .tab{padding:11px 15px;font-size:10px;letter-spacing:.1em}
+    .panel-hd .open{margin-left:0;width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hd">
+    <p class="hd-tag">Mockup v3 &mdash; Replika Kompetitor</p>
+    <h1>Tiga arah desain, satu palet</h1>
+    <p>Ketiga halaman di bawah adalah replika struktur dari situs yang Anda tunjuk,
+      memakai palet terracotta pilihan Anda dan konten Golden Saffron. Yang berbeda
+      hanya struktur, tipografi, dan kepadatan &mdash; warnanya identik.</p>
+    <div class="hd-note">
+      <b>Semua slot foto kosong.</b> Kotak abu berlabel rasio adalah placeholder &mdash;
+      tidak ada satu pun gambar di sini. Perhatikan bahwa <b>Ricey paling menderita</b>
+      karena desainnya dibangun di atas foto full-bleed; Darbar dan dim t jauh lebih
+      tahan tanpa foto.
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Pilih varian">
+    <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1">R1 &middot; Ricey Silo</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2">R2 &middot; Darbar Bali</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3">R3 &middot; dim t</button>
+  </div>
+
+  <!-- ============ R1 ============ -->
+  <section class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+    <div class="panel-hd">
+      <div>
+        <h2>R1 &middot; Ricey Silo &mdash; /about</h2>
+        <p class="src">Replika dari riceysilo.com/about</p>
+      </div>
+      <a class="open" href="r1-ricey.html">Buka mockup &rarr;</a>
+    </div>
+
+    <dl class="specs">
+      <div class="spec"><dt>Kesan</dt><dd>Sunyi, mahal, sangat lapang. Satu kolom sempit di tengah.</dd></div>
+      <div class="spec"><dt>Tipografi</dt><dd><b>Cormorant Garamond</b> 300 untuk heading, Inter untuk body.</dd></div>
+      <div class="spec"><dt>Interaktif</dt><dd>Carousel <b>The Process</b> 5 tahap (klik / hover / panah / autoplay), counter angka, reveal saat scroll, overlay menu mobile.</dd></div>
+      <div class="spec"><dt>Tanpa foto</dt><dd>Paling terdampak. Hero-nya 860px kosong dan seluruh daya tarik aslinya ada di foto.</dd></div>
+    </dl>
+
+    <div class="shots">
+      <div class="shot">
+        <div class="shot-label">Desktop 1440 <span>scroll di dalam kotak</span></div>
+        <div class="shot-scroll"><img src="png/r1-ricey-desktop.png" alt="Replika Ricey, desktop"></div>
+      </div>
+      <div class="shot shot-mobile">
+        <div class="shot-label">Mobile 390</div>
+        <div class="shot-scroll"><img src="png/r1-ricey-mobile.png" alt="Replika Ricey, mobile"></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h3>Catatan</h3>
+      <div class="verdict-grid">
+        <div class="verdict-col">
+          <h4><i class="dot dot-good"></i>Kekuatan</h4>
+          <ul>
+            <li>Terasa premium tanpa perlu dekorasi</li>
+            <li>Paling mudah dibaca; lebar baris terkendali</li>
+            <li>Bagian The Process menahan perhatian lama</li>
+          </ul>
+        </div>
+        <div class="verdict-col">
+          <h4><i class="dot dot-bad"></i>Risiko</h4>
+          <ul>
+            <li>Butuh minimal 6&ndash;8 foto berkualitas, bukan 1&ndash;2</li>
+            <li>Hero kosong terlihat seperti halaman gagal muat</li>
+            <li>Ruang kosong besar terasa sebagai kekurangan isi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ R2 ============ -->
+  <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+    <div class="panel-hd">
+      <div>
+        <h2>R2 &middot; Darbar Bali &mdash; Home</h2>
+        <p class="src">Replika dari darbarbali.com</p>
+      </div>
+      <a class="open" href="r2-darbar.html">Buka mockup &rarr;</a>
+    </div>
+
+    <dl class="specs">
+      <div class="spec"><dt>Kesan</dt><dd>Gelap, royal, dramatis. Kanvas Dark Brown, aksen terracotta terang.</dd></div>
+      <div class="spec"><dt>Tipografi</dt><dd><b>Public Sans</b> 700, heading rapat; wordmark serif ber-tracking lebar.</dd></div>
+      <div class="spec"><dt>Interaktif</dt><dd>Tombol <b>floating WhatsApp + scroll-to-top</b> yang muncul setelah scroll, popup reservation (di aslinya), counter angka, grid asimetris 2 kolom berselang-seling.</dd></div>
+      <div class="spec"><dt>Tanpa foto</dt><dd>Tahan banting. Slot gelap menyatu dengan kanvas, jadi terlihat disengaja.</dd></div>
+    </dl>
+
+    <div class="shots">
+      <div class="shot">
+        <div class="shot-label">Desktop 1440 <span>scroll di dalam kotak</span></div>
+        <div class="shot-scroll"><img src="png/r2-darbar-desktop.png" alt="Replika Darbar, desktop"></div>
+      </div>
+      <div class="shot shot-mobile">
+        <div class="shot-label">Mobile 390</div>
+        <div class="shot-scroll"><img src="png/r2-darbar-mobile.png" alt="Replika Darbar, mobile"></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h3>Catatan</h3>
+      <div class="verdict-grid">
+        <div class="verdict-col">
+          <h4><i class="dot dot-good"></i>Kekuatan</h4>
+          <ul>
+            <li>Paling aman kalau foto belum ada sama sekali</li>
+            <li>Kontras cream di Dark Brown 14.13:1 &mdash; sangat nyaman</li>
+            <li>Floating WhatsApp langsung terasa seperti restoran sungguhan</li>
+            <li>Kepadatan paling tinggi &mdash; banyak info tanpa terasa sesak</li>
+          </ul>
+        </div>
+        <div class="verdict-col">
+          <h4><i class="dot dot-bad"></i>Risiko</h4>
+          <ul>
+            <li>Terracotta murni gagal di kanvas gelap (2.70:1) &mdash; dipaksa naik ke #C8754D</li>
+            <li>Kalau nanti foto masuk, harus foto gelap / moody agar konsisten</li>
+            <li>Terasa lebih &ldquo;malam&rdquo; &mdash; kurang cocok untuk jam makan siang</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ R3 ============ -->
+  <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+    <div class="panel-hd">
+      <div>
+        <h2>R3 &middot; dim t &mdash; /restaurants</h2>
+        <p class="src">Replika dari dimt.co.uk/restaurants</p>
+      </div>
+      <a class="open" href="r3-dimt.html">Buka mockup &rarr;</a>
+    </div>
+
+    <dl class="specs">
+      <div class="spec"><dt>Kesan</dt><dd>Rapi, komersial, ramah. Pita tonal cream&ndash;beige bergantian.</dd></div>
+      <div class="spec"><dt>Tipografi</dt><dd><b>Archivo</b> KAPITAL tracking .2em untuk semua judul, Inter untuk body. Aslinya sofia-pro + brother-1816 (berbayar).</dd></div>
+      <div class="spec"><dt>Interaktif</dt><dd>Grid kartu 3 kolom dengan <b>zoom gambar saat hover</b>, dropdown &ldquo;select an occasion&rdquo;, akordeon FAQ, bulatan burger yang membuka overlay gelap.</dd></div>
+      <div class="spec"><dt>Tanpa foto</dt><dd>Menengah. Grid kartu butuh gambar, tapi pitanya tetap enak dilihat.</dd></div>
+    </dl>
+
+    <div class="shots">
+      <div class="shot">
+        <div class="shot-label">Desktop 1440 <span>scroll di dalam kotak</span></div>
+        <div class="shot-scroll"><img src="png/r3-dimt-desktop.png" alt="Replika dim t, desktop"></div>
+      </div>
+      <div class="shot shot-mobile">
+        <div class="shot-label">Mobile 390</div>
+        <div class="shot-scroll"><img src="png/r3-dimt-mobile.png" alt="Replika dim t, mobile"></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <h3>Catatan</h3>
+      <div class="verdict-grid">
+        <div class="verdict-col">
+          <h4><i class="dot dot-good"></i>Kekuatan</h4>
+          <ul>
+            <li>Paling jelas alur pemesannya untuk pengunjung awam</li>
+            <li>Pita beige/cream menjaga halaman panjang tidak membosankan</li>
+            <li>FAQ akordeon menampung pertanyaan tanpa memanjangkan halaman</li>
+          </ul>
+        </div>
+        <div class="verdict-col">
+          <h4><i class="dot dot-bad"></i>Risiko</h4>
+          <ul>
+            <li>Paling &ldquo;template&rdquo; &mdash; paling mudah dilupakan</li>
+            <li>Tracking .2em pada banyak heading memakan lebar di 390px</li>
+            <li>Struktur terasa seperti situs jaringan cabang, bukan restoran tunggal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Palet identik di ketiganya: cream #F8F4EC &middot; beige #E8DCCB &middot; ink #29231F &middot;
+      terracotta #A64B2A &middot; hover #8A3D22 &middot; border form #8A7660.</p>
+    <p>Semua angka kontras dihitung WCAG 2.1 dan tertulis di komentar <code>base.css</code> serta
+      masing-masing file. Tidak ada foto di seluruh halaman ini &mdash; hanya slot berlabel rasio.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+  function pick(tab){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t === tab)); });
+    panels.forEach(function(p){
+      p.hidden = p.id !== tab.getAttribute('aria-controls');
+    });
+    // tab bisa digeser via keyboard
+    tab.scrollIntoView({ block:'nearest', inline:'nearest' });
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ pick(tab); });
+    tab.addEventListener('keydown', function(e){
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+      if (e.key === 'ArrowLeft')  n = tabs[(i-1+tabs.length) % tabs.length];
+      if (n) { e.preventDefault(); n.focus(); pick(n); }
+    });
+  });
+
+  // tab dari hash, supaya bisa di-bookmark
+  function fromHash(){
+    var h = location.hash.replace('#','');
+    var t = tabs.filter(function(x){ return x.id === h; })[0];
+    if (t) pick(t);
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Saffron — Home (replika dim t restaurants)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* ====================================================================
+     REPLIKA DIM T /restaurants
+     Ciri: heading KAPITAL dengan tracking .2em, pita tonal (cream/beige),
+     grid 3 kolom kartu, tombol pill, bulatan hamburger di kanan atas.
+     Asli pakai sofia-pro + brother-1816 (Adobe, berbayar).
+     Pengganti: Inter (body) + Archivo (caps heading).
+     ==================================================================== */
+
+  body { background: var(--cream); font-family: "Inter", sans-serif; font-weight: 400; }
+
+  /* ---------- header ---------- */
+  .t-hdr {
+    position: fixed; inset: 0 0 auto 0; z-index: 60;
+    transition: background-color .4s ease, box-shadow .4s ease;
+    background: rgba(248,244,236,.96);
+  }
+  .t-hdr.scrolled { box-shadow: 0 1px 0 var(--border-deco); }
+  .t-hdr-inner {
+    display: flex; align-items: center; gap: 30px;
+    max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 96px;
+    transition: height .35s ease;
+  }
+  .t-hdr.scrolled .t-hdr-inner { height: 76px; }
+
+  .t-logo { display: flex; flex-direction: column; text-decoration: none; gap: 5px; }
+  .t-logo-main {
+    font-family: "Archivo", sans-serif; font-weight: 700;
+    font-size: 26px; letter-spacing: -.02em; color: var(--ink); line-height: 1;
+  }
+  .t-logo-main span { color: var(--terracotta); }
+  .t-logo-tag {
+    font-size: 9px; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+  }
+
+  .t-nav { display: flex; gap: 30px; margin-left: auto; align-items: center; }
+  .t-nav a {
+    font-family: "Archivo", sans-serif;
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    font-weight: 600; text-decoration: none; color: var(--ink);
+    opacity: .8; transition: opacity .25s ease, color .25s ease;
+    white-space: nowrap;
+  }
+  .t-nav a:hover, .t-nav a[aria-current] { opacity: 1; }
+
+  .t-book {
+    font-family: "Archivo", sans-serif;
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    font-weight: 600; padding: 15px 30px; border-radius: 999px;
+    background: var(--terracotta); color: #fff; text-decoration: none;
+    margin-left: 6px; transition: background-color .28s ease;
+    white-space: nowrap;
+  }
+  .t-book:hover { background: var(--terracotta-hover); }
+
+  .t-burger {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--terracotta); color: #fff;
+    display: grid; place-items: center; flex: none;
+    transition: background-color .28s ease, transform .28s ease;
+    margin-left: 6px;
+  }
+  .t-burger:hover { background: var(--terracotta-hover); transform: scale(1.05); }
+  .t-burger span { display: block; width: 22px; height: 1.7px; background: currentColor; }
+  .t-burger span + span { margin-top: 6px; }
+  .t-burger[aria-expanded="true"] span:first-child { transform: translateY(3.8px) rotate(45deg); }
+  .t-burger[aria-expanded="true"] span:last-child { transform: translateY(-3.8px) rotate(-45deg); }
+  /* aslinya bulatan separuh keluar layar; kita pertahankan nuansanya */
+  @media (min-width: 1320px) {
+    .t-burger { margin-right: -14px; }
+  }
+
+  /* ---------- hero band ---------- */
+  .t-hero {
+    position: relative; height: clamp(300px, 40vh, 420px);
+    margin-top: 96px; overflow: hidden;
+  }
+  .t-hero .slot { position: absolute; inset: 0; height: 100%; }
+  .t-hero-title {
+    position: absolute; inset: auto 0 0 0; z-index: 2;
+    padding: 0 40px 34px;
+  }
+  .t-hero-title .container { padding: 0; }
+  .t-hero-title span {
+    display: inline-block;
+    font-family: "Archivo", sans-serif; font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 34px); letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink);
+    background: var(--cream); padding: 12px 26px;
+  }
+
+  /* ---------- pita selector (menggantikan dropdown multi-lokasi) ---------- */
+  .t-pick {
+    background: var(--beige);
+    padding: 30px 0 34px;
+  }
+  .t-pick-row {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 22px; flex-wrap: wrap;
+  }
+  .t-pick-field { display: flex; flex-direction: column; gap: 9px; }
+  .t-pick-label {
+    font-family: "Archivo", sans-serif;
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+    font-weight: 600; color: var(--ink);
+  }
+  .t-select-wrap { position: relative; }
+  .t-select-wrap::after {
+    content: ""; position: absolute; right: 18px; top: 50%;
+    width: 8px; height: 8px; margin-top: -6px;
+    border-right: 1.6px solid var(--terracotta); border-bottom: 1.6px solid var(--terracotta);
+    transform: rotate(45deg); pointer-events: none;
+  }
+  .t-select {
+    appearance: none; -webkit-appearance: none;
+    font-family: "Inter", sans-serif; font-size: 14px; color: var(--ink);
+    background: var(--card); border: 1px solid var(--border-form);
+    border-radius: 999px; padding: 15px 54px 15px 26px;
+    min-width: 300px; cursor: pointer;
+  }
+  .t-select:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+  .t-pick .btn { padding: 15px 34px; }
+  .t-pick-note {
+    text-align: center; font-family: "Archivo", sans-serif;
+    font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+    font-weight: 600; color: var(--terracotta); margin-top: 24px;
+  }
+
+  /* ---------- judul section kapital ---------- */
+  .t-sec { padding: clamp(64px, 8vw, 106px) 0; }
+  .t-sec-beige { background: var(--beige); }
+
+  .t-h2 {
+    font-family: "Archivo", sans-serif; font-weight: 700;
+    font-size: clamp(24px, 3.2vw, 40px);
+    letter-spacing: .17em; text-transform: uppercase;
+    color: var(--ink); text-align: center; line-height: 1.32;
+  }
+  .t-h2 small {
+    display: block; font-family: "Inter", sans-serif;
+    font-size: 11px; letter-spacing: .2em; font-weight: 500;
+    color: var(--muted); margin-top: 18px; text-transform: uppercase;
+  }
+  .t-lede {
+    text-align: center; color: var(--muted); font-size: 15.5px;
+    line-height: 1.9; max-width: 68ch; margin: 22px auto 0;
+  }
+
+  /* ---------- grid 3 kolom ---------- */
+  .t-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .t-card { text-decoration: none; color: inherit; display: block; }
+  .t-card-img {
+    overflow: hidden; background: var(--beige); margin-bottom: 26px;
+    outline: 1px solid rgba(41,35,31,.06); outline-offset: -1px;
+  }
+  .t-card-img .slot { aspect-ratio: 4/3; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+  .t-card:hover .t-card-img .slot { transform: scale(1.035); }
+  .t-card-title {
+    font-family: "Archivo", sans-serif; font-weight: 600;
+    font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--terracotta); text-align: center; margin-bottom: 14px;
+    transition: color .28s ease;
+  }
+  .t-card:hover .t-card-title { color: var(--terracotta-hover); }
+  .t-card-body {
+    text-align: center; color: var(--muted); font-size: 14px; line-height: 1.9;
+  }
+  .t-card-body b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+  .t-card-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 18px; font-family: "Archivo", sans-serif;
+    font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+    font-weight: 600; color: var(--ink);
+    border-bottom: 1px solid var(--terracotta); padding-bottom: 4px;
+  }
+
+  /* ---------- pita paragraf terpusat ---------- */
+  .t-band { background: var(--beige); }
+  .t-band p {
+    text-align: center; color: #5C5147; font-size: 16px; line-height: 2;
+    max-width: 80ch; margin: 26px auto 0;
+  }
+
+  /* ---------- accordion FAQ (interaktif) ---------- */
+  .t-faq { max-width: 800px; margin: clamp(34px, 4vw, 52px) auto 0; }
+  .t-faq details {
+    border-bottom: 1px solid var(--border-deco);
+    padding: 0;
+  }
+  .t-faq summary {
+    display: flex; align-items: center; gap: 18px;
+    padding: 22px 0; cursor: pointer; list-style: none;
+    font-family: "Archivo", sans-serif; font-size: 12px;
+    letter-spacing: .16em; text-transform: uppercase; font-weight: 600;
+    color: var(--ink); transition: color .25s ease;
+  }
+  .t-faq summary::-webkit-details-marker { display: none; }
+  .t-faq summary:hover { color: var(--terracotta); }
+  .t-faq summary::after {
+    content: "+"; margin-left: auto; font-size: 20px; font-weight: 400;
+    color: var(--terracotta); line-height: 1; transition: transform .3s ease;
+  }
+  .t-faq details[open] summary::after { transform: rotate(45deg); }
+  .t-faq-body {
+    padding: 0 0 24px; color: var(--muted); font-size: 14.5px;
+    line-height: 1.95; max-width: 66ch;
+  }
+
+  /* ---------- kartu CTA penyambung ---------- */
+  .t-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: clamp(40px,5vw,60px); }
+  .t-promo {
+    background: var(--card); border: 1px solid var(--border-deco);
+    box-shadow: 0 2px 20px rgba(41,35,31,.05);
+    padding: 0 0 38px; text-align: center; overflow: hidden;
+  }
+  .t-promo .slot { aspect-ratio: 16/9; margin-bottom: 30px; }
+  .t-promo h3 {
+    font-family: "Archivo", sans-serif; font-weight: 700;
+    font-size: clamp(17px, 1.9vw, 22px); letter-spacing: .14em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .t-promo .sub {
+    font-family: "Archivo", sans-serif; font-size: 10px;
+    letter-spacing: .18em; text-transform: uppercase; font-weight: 600;
+    color: var(--terracotta); margin-bottom: 18px;
+  }
+  .t-promo p { color: var(--muted); font-size: 14px; line-height: 1.9; padding: 0 34px; margin-bottom: 26px; }
+
+  /* ---------- footer ---------- */
+  .t-ftr { background: var(--ink); color: var(--cream); padding: 66px 0 34px; }
+  .t-ftr-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; padding-bottom: 42px; }
+  .t-ftr-logo {
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 24px;
+    letter-spacing: -.01em; margin-bottom: 16px;
+  }
+  .t-ftr-logo span { color: var(--soft-terra); }
+  .t-ftr p { color: #B3A79A; font-size: 14px; line-height: 1.9; max-width: 34ch; }
+  .t-ftr h4 {
+    font-family: "Archivo", sans-serif; font-size: 10px; letter-spacing: .22em;
+    text-transform: uppercase; font-weight: 600; color: var(--soft-terra);
+    margin-bottom: 18px;
+  }
+  .t-ftr li { margin-bottom: 11px; }
+  .t-ftr li a, .t-ftr li span { color: #B3A79A; font-size: 14px; text-decoration: none; transition: color .25s ease; }
+  .t-ftr li a:hover { color: var(--cream); }
+  .t-ftr-bottom {
+    display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+    padding-top: 26px; border-top: 1px solid rgba(248,244,236,.14);
+    color: #8E8277; font-size: 11px; letter-spacing: .06em;
+  }
+
+  /* ---------- overlay menu ---------- */
+  .t-overlay {
+    position: fixed; inset: 0; z-index: 80;
+    background: var(--ink); color: var(--cream);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 4px; opacity: 0; pointer-events: none; transition: opacity .4s ease;
+  }
+  .t-overlay.is-open { opacity: 1; pointer-events: auto; }
+  .t-overlay a {
+    font-family: "Archivo", sans-serif; font-size: clamp(20px, 3.2vw, 30px);
+    letter-spacing: .18em; text-transform: uppercase; font-weight: 600;
+    text-decoration: none; color: var(--cream); padding: 12px 0;
+    transition: color .25s ease;
+  }
+  .t-overlay a:hover, .t-overlay a[aria-current] { color: var(--soft-terra); }
+  .t-overlay-close {
+    position: absolute; top: 26px; right: 26px; width: 48px; height: 48px;
+    border-radius: 50%; background: var(--terracotta); color: #fff;
+    display: grid; place-items: center; font-size: 24px;
+  }
+
+  @media (max-width: 980px) {
+    .t-nav a:not(.t-book) { display: none; }
+    .t-hdr-inner { padding: 0 22px; height: 76px; gap: 14px; }
+    .t-logo-main { font-size: 20px; }
+    .t-burger { width: 46px; height: 46px; }
+    .t-book { padding: 12px 20px; font-size: 10px; }
+    .t-hero { margin-top: 76px; }
+    .t-grid { grid-template-columns: 1fr; gap: 40px; }
+    .t-cards { grid-template-columns: 1fr; }
+    .t-ftr-grid { grid-template-columns: 1fr; gap: 32px; }
+    .t-select { min-width: 0; width: 100%; }
+    .t-pick-row { flex-direction: column; align-items: stretch; }
+    .t-pick .btn { width: 100%; }
+    .t-pick-field { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="t-hdr" id="t-hdr">
+  <div class="t-hdr-inner">
+    <a class="t-logo" href="#">
+      <span class="t-logo-main">Golden<span>Saffron</span></span>
+      <span class="t-logo-tag">Taste of India</span>
+    </a>
+    <nav class="t-nav">
+      <a href="#" aria-current="page">Menu</a>
+      <a href="#">About</a>
+      <a href="#">Location</a>
+      <a href="#">FAQ</a>
+      <a class="t-book" href="#">Book</a>
+    </nav>
+    <button class="t-burger" data-menu-open aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- hero band -->
+<section class="t-hero">
+  <div class="slot" data-label="Hero band image &middot; 16:5 &middot; dish or interior"></div>
+  <div class="t-hero-title">
+    <div class="container"><span>Golden Saffron Kuta</span></div>
+  </div>
+</section>
+
+<!-- pita pemilih -->
+<section class="t-pick">
+  <div class="container">
+    <div class="t-pick-row">
+      <div class="t-pick-field">
+        <label class="t-pick-label" for="pick-occasion">Select an occasion</label>
+        <div class="t-select-wrap">
+          <select class="t-select" id="pick-occasion">
+            <option>Dinner for two</option>
+            <option>Family table</option>
+            <option>Group of six or more</option>
+            <option>Private event</option>
+          </select>
+        </div>
+      </div>
+      <a class="btn btn-fill" href="#">Select</a>
+    </div>
+    <p class="t-pick-note">Reservations are taken by WhatsApp &mdash; we reply during opening hours</p>
+  </div>
+</section>
+
+<main>
+
+  <!-- grid 3 kolom: meniru grid "OUR RESTAURANTS" dim t -->
+  <section class="t-sec">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="t-h2">Our Signature Table
+          <small>Three dishes worth the journey</small>
+        </h2>
+      </div>
+
+      <div class="t-grid">
+        <a class="t-card reveal" href="#">
+          <div class="t-card-img"><div class="slot" data-label="Butter Chicken &middot; 4:3"></div></div>
+          <p class="t-card-title">Butter Chicken</p>
+          <div class="t-card-body">
+            <b>105K</b>
+            Tandoori chicken simmered in tomato, cream, and fenugreek
+            <span class="t-card-link">View dish</span>
+          </div>
+        </a>
+
+        <a class="t-card reveal" data-d="1" href="#">
+          <div class="t-card-img"><div class="slot" data-label="Chicken Manchurian &middot; 4:3"></div></div>
+          <p class="t-card-title">Chicken Manchurian</p>
+          <div class="t-card-body">
+            <b>89K</b>
+            Crisp chicken balls, onion, capsicum, in a tangy Chinese sauce
+            <span class="t-card-link">View dish</span>
+          </div>
+        </a>
+
+        <a class="t-card reveal" data-d="2" href="#">
+          <div class="t-card-img"><div class="slot" data-label="Paneer Tikka Masala &middot; 4:3"></div></div>
+          <p class="t-card-title">Paneer Tikka Masala</p>
+          <div class="t-card-body">
+            <b>95K</b>
+            Charred cottage cheese, cashew-tomato gravy, dried fenugreek
+            <span class="t-card-link">View dish</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- pita paragraf terpusat (meniru blok "WHERE ASIAN CUISINE MEETS...") -->
+  <section class="t-sec t-band">
+    <div class="container">
+      <h2 class="t-h2 reveal">Where Indian Heritage Meets<br>A Balinese Table</h2>
+      <p class="reveal" data-d="1">Our kitchen begins before the sun does. Whole spices are toasted
+        and ground in small batches daily, because a blend that sits loses the brightness that makes
+        a curry worth remembering. Tandoor breads are stretched and baked to order. Nothing waits
+        under a lamp. Whether you are gathering for a family meal or a quiet dinner for two, the
+        table is set the same way &mdash; generously, and without hurry.</p>
+    </div>
+  </section>
+
+  <!-- dua kartu promo -->
+  <section class="t-sec">
+    <div class="container">
+      <h2 class="t-h2 reveal">Other Ways To Dine
+        <small>See below our set menus in addition to the à la carte menu</small>
+      </h2>
+      <div class="t-cards">
+        <article class="t-promo reveal">
+          <div class="slot" data-label="Set menu image &middot; 16:9"></div>
+          <h3>Lunch Set Menu</h3>
+          <p class="sub">2 courses 145K &middot; 3 courses 185K</p>
+          <p>Our lunchtime set menu is available Monday to Friday, from 11am until 3pm.
+            Includes rice, bread, and a choice of dessert.</p>
+          <a class="btn btn-outline" href="#">View menu</a>
+        </article>
+        <article class="t-promo reveal" data-d="1">
+          <div class="slot" data-label="Group menu image &middot; 16:9"></div>
+          <h3>Group &amp; Events</h3>
+          <p class="sub">From 8 guests</p>
+          <p>For birthdays, family gatherings, and private dinners. We build the menu with you
+            and hold the table for the evening.</p>
+          <a class="btn btn-outline" href="#">Enquire</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ accordion -->
+  <section class="t-sec t-band">
+    <div class="container">
+      <h2 class="t-h2 reveal">Good To Know</h2>
+      <div class="t-faq reveal" data-d="1">
+        <details open>
+          <summary>Do I need to book?</summary>
+          <div class="t-faq-body">Walk-ins are welcome, but evenings fill quickly. We recommend
+            booking a day ahead, especially Friday and Saturday.</div>
+        </details>
+        <details>
+          <summary>How do I reserve?</summary>
+          <div class="t-faq-body">Reservations are taken by WhatsApp only. Send your name, date,
+            time, and party size &mdash; we reply during opening hours.</div>
+        </details>
+        <details>
+          <summary>Do you cater for allergies?</summary>
+          <div class="t-faq-body">Yes. Our kitchen handles nuts, dairy, and gluten daily, so please
+            tell us when you reserve. We can talk you through each dish.</div>
+        </details>
+        <details>
+          <summary>Is there parking?</summary>
+          <div class="t-faq-body">Street parking is available along the front, and we have a small
+            motorbike bay beside the entrance.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="t-sec">
+    <div class="container" style="text-align:center">
+      <h2 class="t-h2 reveal">Save Your Table</h2>
+      <p class="t-lede reveal" data-d="1">Send us your date, time, and party size on WhatsApp.
+        We reply during opening hours.</p>
+      <p class="reveal" data-d="2" style="margin-top:34px">
+        <a class="btn btn-fill" href="#">Reserve via WhatsApp</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="t-ftr">
+  <div class="container">
+    <div class="t-ftr-grid">
+      <div>
+        <p class="t-ftr-logo">Golden<span>Saffron</span></p>
+        <p>Indian cuisine in the heart of Bali. Slow-cooked curries, tandoor breads,
+          spice blends layered by hand.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><span>Jl. Contoh No. 1</span></li>
+          <li><span>Kuta, Bali 80361</span></li>
+          <li><span>11:00 &ndash; 23:00 daily</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">+62 812 0000 0000</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-ftr-bottom">
+      <span>&copy; <span data-year></span> Golden Saffron</span>
+      <span>Menu &middot; About &middot; Location &middot; FAQ</span>
+    </div>
+  </div>
+</footer>
+
+<!-- overlay menu -->
+<div class="t-overlay" data-menu-overlay aria-hidden="true" role="dialog" aria-label="Menu">
+  <button class="t-overlay-close" data-menu-close aria-label="Close menu">&times;</button>
+  <a href="#" aria-current="page">Menu</a>
+  <a href="#">About</a>
+  <a href="#">Location</a>
+  <a href="#">FAQ</a>
+  <a href="#">Book</a>
+</div>
+
+<script src="common.js"></script>
+<script>
+  // header latar memudar saat scroll (dim t selalu solid; kita tambah bayangan tipis)
+  (function () {
+    var h = document.getElementById('t-hdr');
+    var onScroll = function () { h.classList.toggle('scrolled', window.scrollY > 20); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
+</body>
+</html>

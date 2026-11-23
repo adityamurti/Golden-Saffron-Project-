@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Saffron — perbandingan desain v2</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#14130F;color:#EDE7DA;font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+    font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .shell{max-width:1560px;margin:0 auto;padding:56px 36px 120px}
+
+  header.top{border-bottom:1px solid #322D26;padding-bottom:34px;margin-bottom:46px}
+  .kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#8A8073;
+    font-weight:600;margin-bottom:16px}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:40px;
+    line-height:1.1;letter-spacing:-.01em;margin-bottom:14px}
+  header.top p{color:#9A9186;max-width:70ch}
+
+  .tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;position:sticky;top:0;
+    background:#14130F;padding:18px 0;z-index:20;border-bottom:1px solid #2A251F}
+  .tabs button{
+    background:transparent;border:1px solid #3A342C;color:#A79D8F;cursor:pointer;
+    font-family:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:600;padding:11px 20px;border-radius:2px}
+  .tabs button:hover{border-color:#5C5346;color:#EDE7DA}
+  .tabs button.on{background:#EDE7DA;border-color:#EDE7DA;color:#14130F}
+
+  .panel{display:none}
+  .panel.on{display:block}
+
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
+  .cols.two{grid-template-columns:repeat(2,1fr)}
+  .col figure{margin:0}
+  .col .cap{
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+    padding:14px 0 12px;border-bottom:1px solid #2A251F;margin-bottom:12px
+  }
+  .col .cap b{font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  .col .cap code{font-size:10px;color:#7E7568;letter-spacing:.08em}
+  .col img{width:100%;display:block;border:1px solid #2A251F;background:#fff}
+
+  .phone img{max-width:100%}
+  .scroll{max-height:1500px;overflow:auto;border:1px solid #2A251F;background:#0E0D0A}
+  .scroll img{border:0;display:block;width:100%}
+
+  h2.sec{
+    font-family:Georgia,serif;font-weight:400;font-size:26px;margin:0 0 8px;
+    letter-spacing:-.01em
+  }
+  .sec-note{color:#8E8478;font-size:13.5px;margin-bottom:26px;max-width:76ch}
+  .sechead{margin:56px 0 22px;padding-top:34px;border-top:1px solid #2A251F}
+  .sechead:first-child{margin-top:0;padding-top:0;border-top:0}
+
+  .verdict{
+    background:#1A1813;border:1px solid #322D26;border-left:2px solid #B8862F;
+    padding:20px 24px;margin:26px 0 0;font-size:13.5px;color:#A99F91
+  }
+  .verdict b{color:#EDE7DA}
+  .verdict ul{margin:10px 0 0 18px}
+  .verdict li{margin-bottom:7px}
+
+  table{width:100%;border-collapse:collapse;margin:26px 0 0;font-size:13px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid #2A251F}
+  th{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8A8073;
+    font-weight:600;border-bottom-color:#3A342C}
+  td{color:#A99F91}
+  td:first-child{color:#EDE7DA}
+
+  @media (max-width:1100px){
+    .cols{grid-template-columns:1fr}
+    .shell{padding:36px 20px 80px}
+    h1{font-size:30px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="top">
+    <p class="kicker">Golden Saffron &middot; Design Round 2</p>
+    <h1>Tiga tema, tiga layout menu</h1>
+    <p>Markup identik di ketiga tema &mdash; hanya token warna, tipografi, dan
+      perlakuan CTA yang berubah. Konten menu juga identik di ketiga layout.
+      Perbandingan adil: yang berbeda hanya variabel yang diuji.</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="on" data-tab="themes">A &middot; Tema (Home)</button>
+    <button data-tab="menus">B &middot; Layout Menu</button>
+    <button data-tab="dark">C &middot; Menu Gelap</button>
+    <button data-tab="mobile">Mobile</button>
+    <button data-tab="spec">Spesifikasi</button>
+  </nav>
+
+  <!-- ============ A. TEMA ============ -->
+  <section class="panel on" id="themes">
+    <div class="sechead">
+      <h2 class="sec">A &mdash; Tiga tema, Home desktop</h2>
+      <p class="sec-note">1440px. Enam section sama di ketiganya: hero, signature,
+        story, jam buka, CTA band, footer. Yang berubah hanya tema.</p>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="cap"><b>K1 Ivory Ledger</b><code>base: dim t</code></div>
+        <div class="scroll"><img src="png/home-k1-desktop.png" alt="Tema K1 Ivory Ledger, Home desktop"></div>
+      </div>
+      <div class="col">
+        <div class="cap"><b>K2 Dark Darbar</b><code>base: Darbar Bali</code></div>
+        <div class="scroll"><img src="png/home-k2-desktop.png" alt="Tema K2 Dark Darbar, Home desktop"></div>
+      </div>
+      <div class="col">
+        <div class="cap"><b>K3 Editorial Spine</b><code>base: Ricey Silo</code></div>
+        <div class="scroll"><img src="png/home-k3-desktop.png" alt="Tema K3 Editorial Spine, Home desktop"></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <b>Baca perbedaannya di:</b>
+      <ul>
+        <li><b>K1</b> &mdash; panel tonal abu-krem di belakang tiap kartu. Nomor section
+          <code>01/02/03</code> dicetak outline. Paling dekat dengan kondisi sekarang.</li>
+        <li><b>K2</b> &mdash; garis stitch emas putus-putus di kiri, ornamen belah ketupat
+          di antara section, tombol outline emas. Paling berbeda arah.</li>
+        <li><b>K3</b> &mdash; nol border, nol kartu. Satu garis tipis vertikal, hero
+          satu kolom, headline terbesar, CTA berupa garis bawah.</li>
+      </ul>
+      Ketiganya tanpa foto. Slot abu-abu bertanda <code>4:5</code> / <code>3:2</code>
+      adalah tempat foto nanti.
+    </div>
+  </section>
+
+  <!-- ============ B. MENU ============ -->
+  <section class="panel" id="menus">
+    <div class="sechead">
+      <h2 class="sec">B &mdash; Tiga layout menu, tema K1</h2>
+      <p class="sec-note">Konten identik: 6 mains, 1 bread, 1 dessert, harga sama.
+        Tema dipegang konstan di K1 supaya yang dinilai hanya layout.</p>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="cap"><b>M1 Ledger</b><code>1 kolom + deskripsi</code></div>
+        <div class="scroll"><img src="png/menu-m1-desktop.png" alt="Layout menu M1 Ledger"></div>
+      </div>
+      <div class="col">
+        <div class="cap"><b>M2 Spread</b><code>2 kolom, tanpa deskripsi</code></div>
+        <div class="scroll"><img src="png/menu-m2-desktop.png" alt="Layout menu M2 Spread"></div>
+      </div>
+      <div class="col">
+        <div class="cap"><b>M3 Plates</b><code>thumbnail 1:1 per hidangan</code></div>
+        <div class="scroll"><img src="png/menu-m3-desktop.png" alt="Layout menu M3 Plates"></div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <b>Catatan jujur:</b>
+      <ul>
+        <li><b>M3 paling dirugikan</b> oleh slot kosong. Delapan kotak ivory adalah beban
+          visual; delapan foto makanan justru menambah kehangatan. Nilailah M3 dengan
+          membayangkan kotaknya terisi.</li>
+        <li><b>M2</b> membuang deskripsi sepenuhnya. Di desktop terbaca paling seperti
+          menu cetak, tapi tamu kehilangan penjelasan bahan.</li>
+        <li><b>M1</b> paling mudah di-scan dan paling ramah mobile. Tapi paling mirip
+          kondisi sekarang &mdash; mungkin terasa "tidak ada perubahan".</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ C. GELAP ============ -->
+  <section class="panel" id="dark">
+    <div class="sechead">
+      <h2 class="sec">C &mdash; Menu di tema gelap</h2>
+      <p class="sec-note">Uji apakah hierarki harga tetap terbaca saat emas jadi aksen
+        utama. Emas <code>#C18B26</code> di atas <code>#121110</code> = 6.3:1, lolos WCAG AA.</p>
+    </div>
+    <div class="cols two">
+      <div class="col">
+        <div class="cap"><b>K2 &times; M1 &mdash; desktop</b><code>1440px</code></div>
+        <div class="scroll"><img src="png/menu-k2-m1-desktop.png" alt="Menu tema gelap desktop"></div>
+      </div>
+      <div class="col">
+        <div class="cap"><b>K2 &times; M1 &mdash; mobile</b><code>390px</code></div>
+        <div class="scroll"><img src="png/menu-k2-m1-mobile.png" alt="Menu tema gelap mobile"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOBILE ============ -->
+  <section class="panel" id="mobile">
+    <div class="sechead">
+      <h2 class="sec">Home &mdash; mobile 390px, ketiga tema</h2>
+      <p class="sec-note">Tidak ada horizontal scroll. Hero menumpuk, slot foto jadi
+        full width, angka section tetap terbaca.</p>
+    </div>
+    <div class="cols">
+      <div class="col phone">
+        <div class="cap"><b>K1</b><code>Ivory Ledger</code></div>
+        <div class="scroll"><img src="png/home-k1-mobile.png" alt="Home mobile K1"></div>
+      </div>
+      <div class="col phone">
+        <div class="cap"><b>K2</b><code>Dark Darbar</code></div>
+        <div class="scroll"><img src="png/home-k2-mobile.png" alt="Home mobile K2"></div>
+      </div>
+      <div class="col phone">
+        <div class="cap"><b>K3</b><code>Editorial Spine</code></div>
+        <div class="scroll"><img src="png/home-k3-mobile.png" alt="Home mobile K3"></div>
+      </div>
+    </div>
+
+    <div class="sechead">
+      <h2 class="sec">Menu &mdash; mobile 390px, ketiga layout</h2>
+      <p class="sec-note">M2 kolaps jadi satu kolom. M3 mengecilkan thumbnail ke 56px.</p>
+    </div>
+    <div class="cols">
+      <div class="col phone">
+        <div class="cap"><b>M1</b><code>Ledger</code></div>
+        <div class="scroll"><img src="png/menu-m1-mobile.png" alt="Menu mobile M1"></div>
+      </div>
+      <div class="col phone">
+        <div class="cap"><b>M2</b><code>Spread</code></div>
+        <div class="scroll"><img src="png/menu-m2-mobile.png" alt="Menu mobile M2"></div>
+      </div>
+      <div class="col phone">
+        <div class="cap"><b>M3</b><code>Plates</code></div>
+        <div class="scroll"><img src="png/menu-m3-mobile.png" alt="Menu mobile M3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEC ============ -->
+  <section class="panel" id="spec">
+    <div class="sechead">
+      <h2 class="sec">Token per tema</h2>
+      <p class="sec-note">Nilai emas Darbar dan tracking dim t diambil langsung dari CSS
+        situs aslinya, bukan perkiraan.</p>
+    </div>
+    <table>
+      <thead><tr><th>Token</th><th>K1 Ivory Ledger</th><th>K2 Dark Darbar</th><th>K3 Editorial Spine</th></tr></thead>
+      <tbody>
+        <tr><td>Kanvas</td><td>#F7F3EA</td><td>#121110</td><td>#FBF8F2</td></tr>
+        <tr><td>Permukaan</td><td>#EFE9DC</td><td>#1A1815</td><td>&mdash;</td></tr>
+        <tr><td>Teks</td><td>#1C1A17 (16:1)</td><td>#F2EDE3 (16:1)</td><td>#1C1A17 (16:1)</td></tr>
+        <tr><td>Aksen</td><td>#B8862F hairline saja</td><td>#C18B26 harga &amp; outline</td><td>#B8862F angka saja</td></tr>
+        <tr><td>Display</td><td>Cormorant Garamond</td><td>Cormorant Garamond</td><td>Cormorant, clamp 42&ndash;78px</td></tr>
+        <tr><td>Label</td><td>Inter caps .18em</td><td>Public Sans caps .2em</td><td>Inter caps .2em</td></tr>
+        <tr><td>CTA primary</td><td>Ink solid</td><td>Emas outline</td><td>Ink underline</td></tr>
+        <tr><td>Signature move</td><td>Panel tonal + nomor outline</td><td>Stitch emas + ornamen</td><td>Spine vertikal 1px</td></tr>
+        <tr><td>Ketahanan tanpa foto</td><td>Tinggi</td><td>Tinggi</td><td>Sedang</td></tr>
+        <tr><td>Risiko "belum jadi"</td><td>Rendah</td><td>Sedang</td><td>Tinggi</td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <b>Yang tidak berubah apa pun pilihannya:</b> lapisan konversi (WhatsApp CTA,
+      sticky bar mobile, <code>lib/whatsapp.ts</code> sebagai satu-satunya sumber
+      tautan), SEO (JSON-LD, sitemap, robots), dan aturan kontras WCAG.
+      Semua warna tetap di <code>@theme</code> di <code>app/globals.css</code> &mdash;
+      nol hex di komponen.
+    </div>
+  </section>
+
+</div>
+
+<script>
+  var tabs = document.querySelectorAll(".tabs button");
+  var panels = document.querySelectorAll(".panel");
+  function show(id) {
+    tabs.forEach(function (b) { b.classList.toggle("on", b.dataset.tab === id); });
+    panels.forEach(function (p) { p.classList.toggle("on", p.id === id); });
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  tabs.forEach(function (b) {
+    b.addEventListener("click", function () { show(b.dataset.tab); });
+  });
+  var initial = (location.hash || "").replace("#", "");
+  if (initial && document.getElementById(initial)) show(initial);
+</script>
+</body>
+</html>
