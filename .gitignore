@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+.next/
+out/
+build/
+dist/
+
+# environment
+.env
+.env.local
+.env*.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# internal working artifacts (bukan bagian produk)
+.pdf_extract/
+.claude/
+
+# large source material — PDF proposal 13MB
+GOLDEN SAFFRON PROPOSAL.pdf
+
+# screenshot/render sementara
+mockups/_live/
+mockups/_shoot/
+mockups/_wrap-*.html
+mockups/_probe.html
+
+# editor & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

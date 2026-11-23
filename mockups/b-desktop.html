@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Golden Saffron — B Ivory (desktop)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:#FAF7F0;color:#1C1A17;font-family:'Inter',system-ui,sans-serif;
+    display:flex;flex-direction:column;position:relative;overflow:hidden;
+    -webkit-font-smoothing:antialiased;}
+
+  .nav{position:relative;z-index:2;display:flex;align-items:center;gap:40px;
+    height:104px;padding:0 76px;flex:none;}
+  .brand{display:flex;align-items:center;gap:14px;font-family:'Cormorant Garamond',serif;
+    font-size:22px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;}
+  .mark{width:30px;height:30px;border:1px solid #B8862F;color:#B8862F;display:grid;
+    place-items:center;font-size:9px;letter-spacing:.06em;font-family:'Inter',sans-serif;font-weight:600;}
+  .links{margin-left:auto;display:flex;gap:36px;}
+  .links a{color:#7A7267;text-decoration:none;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:500;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+    padding:16px 30px;border:1px solid transparent;white-space:nowrap;}
+  .btn-primary{background:#1C1A17;color:#FAF7F0;}
+  .btn-ghost{border-color:#D6CDBD;color:#1C1A17;background:transparent;}
+  .nav-cta{margin-left:36px;padding:14px 24px;}
+
+  .hero{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;
+    justify-content:center;padding:0 76px;max-width:1120px;}
+  .eyebrow{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#B8862F;
+    margin-bottom:34px;font-weight:600;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:88px;line-height:1.0;
+    letter-spacing:-.014em;margin-bottom:40px;max-width:14ch;}
+  h1 em{font-style:italic;color:#B8862F;}
+  .rule{width:60px;height:1px;background:#B8862F;margin-bottom:40px;}
+  .lede{color:#6E6659;font-size:16px;line-height:1.85;max-width:520px;font-weight:300;margin-bottom:52px;}
+  .actions{display:flex;gap:14px;}
+
+  .strip{position:relative;z-index:2;flex:none;border-top:1px solid #E4DCCE;
+    padding:28px 76px;display:flex;gap:84px;background:#F5F1E8;}
+  .strip .k{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+    color:#9A9082;margin-bottom:9px;font-weight:600;}
+  .strip .v{font-size:14px;color:#3D3831;font-weight:300;}
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand"><span class="mark">GS</span>Golden Saffron</div>
+    <nav class="links">
+      <a href="#">Home</a><a href="#">Menu</a><a href="#">About</a><a href="#">Location</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="#">Reserve</a>
+  </header>
+
+  <main class="hero">
+    <p class="eyebrow">Indian Cuisine · Bali</p>
+    <h1>Authentic Indian flavours, served <em>with warmth</em></h1>
+    <div class="rule"></div>
+    <p class="lede">A taste of comfort and creativity — slow-cooked curries, tandoor breads,
+      and spice blends layered by hand, served in the heart of Bali.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#">Reserve via WhatsApp</a>
+      <a class="btn btn-ghost" href="#">Get Directions</a>
+    </div>
+  </main>
+
+  <footer class="strip">
+    <div><span class="k">Opening Hours</span><span class="v">11:00 — 23:00</span></div>
+    <div><span class="k">WhatsApp</span><span class="v">+62 812 0000 0000</span></div>
+    <div><span class="k">Find Us</span><span class="v">Bali, Indonesia</span></div>
+  </footer>
+</body>
+</html>

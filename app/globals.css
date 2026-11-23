@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tema: Ivory Quiet
+   Token diekstrak langsung dari mockup b-desktop.html / b-menu.html.
+   Aturan pakai (jangan dilanggar tanpa alasan):
+   1. Saffron TIDAK PERNAH jadi background tombol.
+   2. text-saffron hanya untuk: eyebrow, <em> heading, harga, garis 1px.
+   3. Body copy selalu muted, bukan ink. Hierarki dari warna.
+   4. Tidak ada shadow, tidak ada border-radius. Rata dan bergaris.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Surface */
+  --color-ivory: #faf7f0;
+  --color-ivory-sunk: #f5f1e8;
+  --color-hairline: #e4dcce;
+  --color-hairline-soft: #e7dfd1;
+
+  /* Ink */
+  --color-ink: #1c1a17;
+  --color-ink-soft: #3d3831;
+  --color-muted: #6e6659;
+  --color-muted-2: #7a7267;
+  --color-muted-3: #9a9082;
+
+  /* Accent */
+  --color-saffron: #b8862f;
+  --color-saffron-line: #e0d3b8;
+  --color-ghost-border: #d6cdbd;
+
+  /* Type — variabel diisi oleh next/font di layout.tsx */
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  /* Tracking khas tema ini */
+  --tracking-brand: 0.2em;
+  --tracking-nav: 0.16em;
+  --tracking-eyebrow: 0.4em;
+  --tracking-label: 0.3em;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    /* Ruang untuk sticky CTA bar di mobile, termasuk safe area iPhone. */
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 768px) {
+    body {
+      padding-bottom: 0;
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-saffron-line);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-saffron);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Container standar: padding 22px mobile, 76px desktop. */
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.375rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 4.75rem;
+    }
+  }
+
+  /* Garis aksen pendek di bawah heading. */
+  .rule {
+    height: 1px;
+    background-color: var(--color-saffron);
+  }
+
+  /* Leader dots untuk baris menu: nama ..... harga */
+  .leader {
+    flex: 1;
+    border-bottom: 1px dotted var(--color-ghost-border);
+    transform: translateY(-0.5rem);
+  }
+
+  /* Tombol. Primary = ink, BUKAN saffron (kontras 16:1 vs 3.4:1). */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-nav);
+    line-height: 1;
+    padding: 1rem 1.875rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 150ms ease, border-color 150ms ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-ink);
+    color: var(--color-ivory);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-ink-soft);
+  }
+
+  .btn-ghost {
+    border-color: var(--color-ghost-border);
+    color: var(--color-ink);
+    background-color: transparent;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-saffron);
+  }
+
+  /* Tap target minimal 44px di layar sentuh. */
+  @media (pointer: coarse) {
+    .btn {
+      min-height: 2.75rem;
+    }
+  }
+
+  /* Eyebrow: label kecil ber-tracking lebar di atas heading. */
+  .eyebrow {
+    color: var(--color-saffron);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+  }
+}

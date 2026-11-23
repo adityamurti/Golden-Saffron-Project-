@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Golden Saffron — B Ivory (mobile)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:#FAF7F0;color:#1C1A17;font-family:'Inter',system-ui,sans-serif;
+    display:flex;flex-direction:column;position:relative;overflow:hidden;
+    -webkit-font-smoothing:antialiased;}
+
+  .nav{display:flex;align-items:center;height:78px;padding:0 22px;flex:none;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;
+    font-size:15px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;}
+  .mark{width:26px;height:26px;border:1px solid #B8862F;color:#B8862F;display:grid;
+    place-items:center;font-size:8px;font-family:'Inter',sans-serif;font-weight:600;}
+  .burger{margin-left:auto;display:flex;flex-direction:column;gap:5px;padding:11px 2px;}
+  .burger i{display:block;width:22px;height:1px;background:#3D3831;}
+
+  .hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 22px 100px;}
+  .eyebrow{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:#B8862F;
+    margin-bottom:22px;font-weight:600;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:50px;line-height:1.02;
+    letter-spacing:-.01em;margin-bottom:24px;}
+  h1 em{font-style:italic;color:#B8862F;}
+  .rule{width:40px;height:1px;background:#B8862F;margin-bottom:24px;}
+  .lede{color:#6E6659;font-size:13.5px;line-height:1.75;font-weight:300;margin-bottom:30px;}
+  .btn{display:flex;align-items:center;justify-content:center;text-decoration:none;
+    font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
+    min-height:50px;padding:0 20px;border:1px solid transparent;}
+  .btn-primary{background:#1C1A17;color:#FAF7F0;}
+  .btn-ghost{border-color:#D6CDBD;color:#1C1A17;margin-top:10px;}
+
+  .sticky{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;gap:9px;
+    padding:12px 14px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(250,247,240,.96);border-top:1px solid #E0D8C8;
+    backdrop-filter:blur(10px);}
+  .sticky .btn{flex:1 1 0;min-width:0;min-height:48px;font-size:9.5px;
+    letter-spacing:.05em;padding:0 6px;margin:0;white-space:nowrap;}
+  .sticky .btn-ghost{border-color:#CFC4B0;}
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="brand"><span class="mark">GS</span>Golden Saffron</div>
+    <div class="burger"><i></i><i></i><i></i></div>
+  </header>
+
+  <main class="hero">
+    <p class="eyebrow">Indian Cuisine &middot; Bali</p>
+    <h1>Authentic Indian flavours, served <em>with warmth</em></h1>
+    <div class="rule"></div>
+    <p class="lede">A taste of comfort and creativity &mdash; slow-cooked curries, tandoor breads,
+      and spice blends layered by hand.</p>
+    <a class="btn btn-primary" href="#">View the Menu</a>
+    <a class="btn btn-ghost" href="#">Get Directions</a>
+  </main>
+
+  <div class="sticky">
+    <a class="btn btn-primary" href="#">Reserve via WhatsApp</a>
+    <a class="btn btn-ghost" href="#">Directions</a>
+  </div>
+</body>
+</html>
